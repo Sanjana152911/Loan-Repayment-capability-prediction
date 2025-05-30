@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LoanVision</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            height: 100vh;            
+            overflow-y: auto;             
+            display: flex;
+            flex-direction: column; 
+            justify-content: center;
+            align-items: center;
+            background-image: url('blue1.png'); 
+            background-size: cover;
+            background-position: center;
+        }
+        #header {
+            background-color: rgba(255, 255, 255, 0); 
+            padding: 20px;
+            text-align: center; 
+            margin-bottom: 20px; 
+        }
+        h1 {
+            margin: 0;
+            color: #1b1b37; 
+            font-size: 86px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Adding text shadow */
+            animation: glow 2s infinite alternate; /* Adding animation */
+        }
+        #subtext {
+            margin-top: 10px; 
+            font-size: 66px; 
+            color: #1b1b37;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Adding text shadow */
+            transform: scale(1.1); /* Adding transform for scaling effect */
+            animation: glow 2s infinite alternate; /* Adding animation */
+        }
+        #links {
+            text-align: center; 
+        }
+        #links a {
+            color: black; 
+            text-decoration: underline; 
+            margin: 46px 0 0; /* Adjust top margin only */
+            font-size: 35px; 
+            display: block; /* Ensure each link takes up full width */
+            transition: color 0.3s ease; /* Adding transition effect */
+        }
+        #links a:hover {
+            color: #ff0000; 
+            animation: bounce 0.5s linear; /* Adding animation on hover */
+        }
+        /* Link at bottom right */
+        #bottom-right-link {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 20px;
+            text-decoration: none;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        #bottom-right-link:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+            transform: scale(1.1);
+        }
+        /* Loading animation */
+        .loading::after {
+            content: '...';
+            animation: loading 1s infinite;
+        }
+        @keyframes loading {
+            0% { content: '.'; }
+            33% { content: '..'; }
+            66% { content: '...'; }
+        }
+        /* Keyframes for animations */
+        @keyframes glow {
+            0% { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); }
+            100% { text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.8); }
+        }
+        @keyframes pulse {
+            0% { transform: scale(1.1); }
+            100% { transform: scale(1.3); }
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+
+<div id="header">
+    <img src="LV.png" alt="LoanVision Logo" width="120">
+    <h1>LoanVision</h1>
+    <div id="subtext">Unlocking Insights for Smarter Loans</div>
+</div>
+
+<div id="links">
+    <a href="LoanPredict.html" onclick="showLoading()">Loan Repayment Predictor</a>
+    <a href="LCTRY.html" onclick="showLoading()">Loan Calculator</a>
+    <a href="info.html" onclick="showLoading()">Information on Loans</a>
+    <a href="F&B.html" onclick="showLoading()">Features and Benefits</a>
+</div>
+
+<a id="bottom-right-link" href="Develop.html">Developed By</a>
+
+</body>
+</html>

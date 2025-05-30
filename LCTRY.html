@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-image: url('blue1.png');
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 50px;
+        }
+        .calculator {
+            width: 45%;
+        }
+        .calculator h1 {
+            color: #0e0a0a;
+            text-align: center;
+        }
+        .calculator form {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .calculator label {
+            font-weight: bold;
+            color: #333;
+        }
+        .calculator input[type="text"],
+        .calculator input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 25px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .calculator button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .calculator button:hover {
+            background-color: #45a049;
+        }
+        .calculator #result {
+            margin-top: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 40px;
+            border-radius: 10px;
+        }
+        .calculator table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .calculator th, .calculator td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        .calculator th {
+            background-color: #f2f2f2;
+        }
+        .logo {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <a href="Homepage.html" class="logo">
+        <img src="LV.png" alt="Logo" width="80">
+    </a>
+    <div class="container">
+        <div class="calculator">
+            <h1>Total EMI for Loan Amount</h1>
+            <form id="loanForm">
+                <label for="loanAmount">Loan Amount (in Rupees):</label>
+                <input type="number" id="loanAmount" name="loanAmount" required><br><br>
+                <button type="button" onclick="calculateTotalEMI()">Calculate</button>
+            </form>
+            <div id="result"></div>
+        </div>
+        <div class="calculator">
+            <h1>Loan Calculator</h1>
+            <form id="loanForm">
+                <label for="loanAmount">Loan Amount (Rs.):</label>
+                <input type="text" id="loanAmount" name="loanAmount" required><br>
+                <label for="interestRate">Interest Rate (%):</label>
+                <input type="text" id="interestRate" name="interestRate" pattern="[0-9]+(\.[0-9]{1,2})?" required><br>
+                <label for="loanTerm">Loan Term (Years):</label>
+                <input type="text" id="loanTerm" name="loanTerm" pattern="[0-9]+" required><br>
+                <button type="button" onclick="calculateEMI()">Calculate</button><br>
+                <label for="emiAmount">EMI Amount (Rs.):</label>
+                <input type="text" id="emiAmount" name="emiAmount" readonly>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function calculateTotalEMI() {
+            var loanAmount = document.getElementById("loanAmount").value;
+
+            var resultHTML = "<h2>Best EMI option</h2>";
+            resultHTML += "<table>";
+            resultHTML += "<tr><th>EMI (per month)</th><th>Tenure (Years)</th><th>Interest Rate (%)</th><th>Total Amount to be Paid (Rupees)</th></tr>";
+
+            // Example ranges for tenure and interest rate
+            var tenureRange = [10, 15, 20, 25, 30];
+            var interestRateRange = [7.50,8.00,8.5,9.0, 9.5];
+
+            for (var i = 0; i < tenureRange.length; i++) {
+                for (var j = 0; j < interestRateRange.length; j++) {
+                    var tenure = tenureRange[i];
+                    var interestRate = interestRateRange[j];
+                    var emi = calculateEMIForLoanAmount(loanAmount, interestRate, tenure);
+                    var totalAmount = emi * (tenure * 12);
+                    resultHTML += "<tr><td>" + emi.toFixed(2) + "</td><td>" + tenure + "</td><td>" + interestRate + "</td><td>" + totalAmount.toFixed(2) + "</td></tr>";
+                }
+            }
+
+            resultHTML += "</table>";
+
+            document.getElementById("result").innerHTML = resultHTML;
+        }
+
+        function calculateEMI() {
+            var loanAmount = parseFloat(document.getElementById('loanAmount').value);
+            var interestRate = parseFloat(document.getElementById('interestRate').value);
+            var loanTerm = parseInt(document.getElementById('loanTerm').value);
+
+            var monthlyInterestRate = (interestRate / 100) / 12;
+            var numberOfPayments = loanTerm * 12;
+
+            var emiAmount = loanAmount * monthlyInterestRate / (1 - Math.pow(1 + monthlyInterestRate, -numberOfPayments));
+
+            document.getElementById('emiAmount').value = emiAmount.toFixed(2);
+        }
+
+        function calculateEMIForLoanAmount(principal, rate, time) {
+            rate = rate / (12 * 100);  // Monthly interest rate
+            time = time * 12;  // Convert years to months
+            var emi = (principal * rate * Math.pow(1 + rate, time)) / (Math.pow(1 + rate, time) - 1);
+            return emi;
+        }
+    </script>
+</body>
+</html>
