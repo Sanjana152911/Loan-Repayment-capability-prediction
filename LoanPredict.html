@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Repayment Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="predict-body">
+    <div class="predict-container">
+        <!-- Add logo and link -->
+        <a href="Homepage.html">
+            <img src="LV.png" alt="LoanVision Logo" width="50" class="logo">
+        </a>
+        <h1>Loan Repayment Calculator</h1>
+        <div class="field">
+            <label for="income">Income (Rs.):</label>
+            <select name="income" id="income">
+                <option value="5">1-5L</option>
+                <option value="6">5L-10L</option>
+                <option value="7">10L-20L</option>
+                <option value="8">20L-30L</option>
+                <option value="9">30L-50L</option>
+                <option value="10">Above 50L</option>
+            </select>
+        </div>
+        <div class="field">
+            <label for="age">Age (Years):</label>
+            <select name="age" id="age">
+                <option value="10">20-30</option>
+                <option value="9">30-40</option>
+                <option value="8">40-50</option>
+                <option value="7">50-60</option>
+                <option value="6">60-70</option>
+                <option value="5">70-80</option>
+            </select>
+        </div>
+        <div class="field">
+            <label for="houseOwned">House Owned:</label>
+            <select name="houseOwned" id="houseOwned">
+                <option value="Owned">Owned</option>
+                <option value="Rented">Rented</option>
+            </select>
+        </div>
+        <div class="field">
+            <label for="carOwned">Car Owned:</label>
+            <select name="carOwned" id="carOwned">
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+        </div>
+        <div class="field">
+            <label for="experience">Experience:</label>
+            <select name="experience" id="experience">
+                <option value="6">0-5yrs</option>
+                <option value="7">5-10yrs</option>
+                <option value="8">10-15yrs</option>
+                <option value="9">15-20yrs</option>
+                <option value="10">20-30yrs</option>
+                <option value="5">above 30yrs</option>
+            </select>
+        </div>
+        <div class="field">
+            <label for="position">Position:</label>
+            <select name="position" id="position">
+                <option value="4">Junior</option>
+                <option value="6">Mid-level</option>
+                <option value="8">Senior</option>
+                <option value="10">Executive</option>
+            </select>
+        </div>
+        <div class="field">
+            <label for="dependents">Dependents:</label>
+            <select name="dependents" id="dependents">
+                <option value="10">1</option>
+                <option value="9">2</option>
+                <option value="8">3</option>
+                <option value="7">4</option>
+                <option value="6">5</option>
+                <option value="5">above 5</option>
+            </select>
+        </div>
+        <button onclick="calculateRepayment()">Predict</button>
+        <div id="output"></div>
+        <div id="message" class="message"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

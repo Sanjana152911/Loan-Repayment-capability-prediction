@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="lctry-body">
+    <a href="Homepage.html" class="logo">
+        <img src="LV.png" alt="Logo" width="80">
+    </a>
+    <div class="lctry-container">
+        <div class="calculator">
+            <h1>Total EMI for Loan Amount</h1>
+            <form id="loanForm">
+                <label for="loanAmount">Loan Amount (in Rupees):</label>
+                <input type="number" id="loanAmount" name="loanAmount" required><br><br>
+                <button type="button" onclick="calculateTotalEMI()">Calculate</button>
+            </form>
+            <div id="result"></div>
+        </div>
+        <div class="calculator">
+            <h1>Loan Calculator</h1>
+            <form id="loanForm">
+                <label for="loanAmount">Loan Amount (Rs.):</label>
+                <input type="text" id="loanAmount" name="loanAmount" required><br>
+                <label for="interestRate">Interest Rate (%):</label>
+                <input type="text" id="interestRate" name="interestRate" pattern="[0-9]+(\.[0-9]{1,2})?" required><br>
+                <label for="loanTerm">Loan Term (Years):</label>
+                <input type="text" id="loanTerm" name="loanTerm" pattern="[0-9]+" required><br>
+                <button type="button" onclick="calculateEMI()">Calculate</button><br>
+                <label for="emiAmount">EMI Amount (Rs.):</label>
+                <input type="text" id="emiAmount" name="emiAmount" readonly>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
